@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Coords</title>
+
+    <!-- Leaflet Dependencies -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+
+
+</head>
+<script>
+    
+    const MAP_CENTER = [23.176391369357344, 80.02201334213763];
+    
+    
+</script>
+<body style="background-color: black;">
+    
+
+    <div id="map"></div>
+
+    <div id="actionpanel">
+        <div onclick="map.invalidateSize();">Invalidate Size</div>
+        <div>Add</div>
+        <div>Remove</div>
+    </div>
+
+</body>
+<script>
+var map = L.map('map', {
+        center: MAP_CENTER,
+        zoom: 50
+    });
+
+    L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 19,
+        subdomains:['mt0','mt1','mt2','mt3']
+    }).addTo(map);
+
+    //Using setInterval can help the reloading or refreshing of the map itself.
+    setInterval(function() {
+        map.invalidateSize();
+    }, 2000);
+
+</script>
+<style>
+    *{color: whitesmoke;}
+    #map { height: 70vh; }
+    #actionpanel{
+        margin: 20px auto;
+        padding: 20px;
+        display: flex;
+    }
+    #actionpanel div{
+        cursor: pointer;
+        background-color: rgba(255, 228, 196, 0.233);
+        margin: 20px auto;
+        padding: 20px;
+        transition: 0.2s;
+        user-select: none;
+    }
+    #actionpanel div:hover{
+        background-color: rgba(255, 228, 196, 0.555);
+    }
+</style>
+</html>
